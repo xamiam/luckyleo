@@ -1,0 +1,135 @@
+@import "vars";
+@import "mixins";
+@import "font";
+
+$color_yellow: #fc0;
+$color_orange: #f90;
+$color_orange: #f60;
+$color_ci_dark: darken($color_orange, 20%);
+$color_ci_bright: #fc3;
+
+body {
+  background: $color_yellow;
+  font-size: 18px;
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  outline: none;
+}
+
+.container {
+  max-width: 40em;
+  padding: 0 2em;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+i.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  svg {
+    width: 100%;
+    height: 100%;
+    * {
+      fill: currentColor;
+    }
+  }
+}
+
+.dates {
+  padding: 0.75em;
+  background: #000;
+  color: #fff;
+  @include font_bold;
+  @include font_size_l;
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  position: relative;
+
+  .date {
+    display: flex;
+    gap: 0.5em;
+  }
+
+  a {
+    color: $color_ci_bright;
+    text-decoration: none;
+    line-height: 1em;
+    padding: 0.75em;
+    @include font_size_l;
+    height: 1em;
+    &:hover {
+      color: #fff;
+    }
+    &.date-prev {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.date-next {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .date-prev {
+    i {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.loading {
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+  margin: 0 auto;
+  &::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    animation: prixClipFix 2s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}

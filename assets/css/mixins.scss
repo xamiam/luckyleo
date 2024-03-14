@@ -1,0 +1,19 @@
+@mixin radius($radius: 1rem) {
+  border-radius: $radius;
+}
+
+@mixin transition_fast {
+  transition: all 0.2s ease;
+}
+
+@mixin transition_medium {
+  transition: all 0.4s ease;
+}
+
+@mixin transition_slow {
+  transition: all 0.6s ease;
+}
+
+@mixin box_shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}

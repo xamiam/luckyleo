@@ -1,0 +1,52 @@
+$media_xs: "(max-width: 575px)";
+$media_sm_min: "(min-width: 576px)";
+$media_sm: "(min-width: 576px) and (max-width: 767px)";
+$media_sm_max: "(max-width: 767px)";
+$media_md: "(min-width: 768px) and (max-width: 991px)";
+$media_md_min: "(min-width: 768px)";
+$media_md_max: "(max-width: 991px)";
+$media_lg: "(min-width: 992px) and (max-width: 1199px)";
+$media_lg_min: "(min-width: 992px)";
+$media_lg_max: "(max-width: 1199px)";
+$media_xl: "(min-width: 1200px)";
+$media_xxl: "(min-width: 1600px)";
+
+$font_size_base: 18px;
+$font_size_base_sm: 17px;
+$font_size_base_xs: 16px;
+
+// https://type-scale.com/
+// Major third
+$font_size_xxxxxxl: 4.768em;
+$font_size_xxxxxl: 3.8156em;
+$font_size_xxxxl: 3.052em;
+$font_size_xxxl: 2.441em;
+$font_size_xxl: 1.953em;
+$font_size_xl: 1.563em;
+$font_size_l: 1.25em;
+$font_size_m: 1em;
+$font_size_s: 0.85em;
+$font_size_xs: 0.64em;
+$font_size_xxs: 0.512em;
+
+$font_rem_xxxxxxl: 4.768rem;
+$font_rem_xxxxxl: 3.8156rem;
+$font_rem_xxxxl: 3.052rem;
+$font_rem_xxxl: 2.441rem;
+$font_rem_xxl: 1.953rem;
+$font_rem_xl: 1.563rem;
+$font_rem_l: 1.25rem;
+$font_rem_m: 1rem;
+$font_rem_s: 0.85rem;
+$font_rem_xs: 0.64rem;
+$font_rem_xxs: 0.512rem;
+
+$font_vw_xxxxxxl: 4.5vw;
+$font_vw_xxxxxl: 4vw;
+$font_vw_xxxxl: 3.5vw;
+$font_vw_xxxl: 3vw;
+$font_vw_xxl: 2.5vw;
+$font_vw_xl: 2vw;
+$font_vw_l: 1.5vw;
+$font_vw_m: 1vw;
+$font_vw_s: 0.7vw;

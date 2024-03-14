@@ -1,0 +1,121 @@
+@mixin font_regular {
+  font-family: sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin font_medium {
+  font-family: sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin font_bold {
+  font-family: sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+@mixin font_black {
+  font-family: sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+@mixin font_size_xxxxxl {
+  font-size: $font_size_xxxxxl;
+  line-height: 1em;
+}
+@mixin font_size_xxxxxxl {
+  font-size: $font_size_xxxxxxl;
+  line-height: 1em;
+}
+@mixin font_size_xxxxl {
+  font-size: $font_size_xxxxl;
+  line-height: 1em;
+}
+@mixin font_size_xxxl {
+  font-size: $font_size_xxxl;
+  line-height: 1em;
+}
+@mixin font_size_xxl {
+  font-size: $font_size_xxl;
+  line-height: 1.2em;
+}
+@mixin font_size_xl {
+  font-size: $font_size_xl;
+  line-height: 1.2em;
+}
+@mixin font_size_l {
+  font-size: $font_size_l;
+  line-height: 1.2em;
+}
+@mixin font_size_m {
+  font-size: 1em;
+  line-height: 1.2em;
+}
+@mixin font_size_s {
+  font-size: $font_size_s;
+  line-height: 1.2em;
+}
+@mixin font_size_xs {
+  font-size: $font_size_xs;
+  line-height: 1.2em;
+}
+@mixin font_size_xxs {
+  font-size: $font_size_xxs;
+  line-height: 1.2em;
+}
+@mixin font_size_xxxs {
+  font-size: $font_size_xxxs;
+  line-height: 1.2em;
+}
+
+@mixin font_rem_xxxxxl {
+  font-size: $font_rem_xxxxxl;
+  line-height: 1em;
+}
+@mixin font_rem_xxxxxxl {
+  font-size: $font_rem_xxxxxxl;
+  line-height: 1em;
+}
+@mixin font_rem_xxxxl {
+  font-size: $font_rem_xxxxl;
+  line-height: 1em;
+}
+@mixin font_rem_xxxl {
+  font-size: $font_rem_xxxl;
+  line-height: 1em;
+}
+@mixin font_rem_xxl {
+  font-size: $font_rem_xxl;
+  line-height: 1.2em;
+}
+@mixin font_rem_xl {
+  font-size: $font_rem_xl;
+  line-height: 1.2em;
+}
+@mixin font_rem_l {
+  font-size: $font_rem_l;
+  line-height: 1.2em;
+}
+@mixin font_rem_m {
+  @include font_size_base;
+  line-height: 1.2em;
+}
+@mixin font_rem_s {
+  font-size: $font_rem_s;
+  line-height: 1.2em;
+}
+@mixin font_rem_xs {
+  font-size: $font_rem_xs;
+  line-height: 1.2em;
+}
+@mixin font_rem_xxs {
+  font-size: $font_rem_xxs;
+  line-height: 1.2em;
+}
+@mixin font_rem_xxxs {
+  font-size: $font_rem_xxxs;
+  line-height: 1.2em;
+}
