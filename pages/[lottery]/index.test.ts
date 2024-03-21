@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import EurojackpotOverview from '@/pages/eurojackpot/index.vue'
+import LotteryOverview from '@/pages/[lottery]/index.vue'
 
-describe('EurojackpotOverview', () => {
+describe('LotteryOverview', () => {
   it('renders correctly', () => {
     // Provide a stub for RouterLink when mounting the component
-    const wrapper = mount(EurojackpotOverview, {
+    const wrapper = mount(LotteryOverview, {
       global: {
         stubs: {
           RouterLink: true // This stubs RouterLink with a dummy component
@@ -18,9 +18,9 @@ describe('EurojackpotOverview', () => {
     
   }),
 
-   it('renders 16 links to Eurojackpot Draws', () => {
+   it('renders 16 links to Lottery Draws', () => {
     // Provide a stub for RouterLink when mounting the component
-    const wrapper = mount(EurojackpotOverview, {
+    const wrapper = mount(LotteryOverview, {
       global: {
         stubs: {
           RouterLink: true // This stubs RouterLink with a dummy component

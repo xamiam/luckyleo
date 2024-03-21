@@ -9,13 +9,14 @@ const router = useRouter();
 
 // Set refs for current date, timeout message and loading
 const currentDate = ref(route.params.date as string);
+const lottery = ref(route.params.lottery as string);
 const timeoutMessage = ref(false);
 const loading = ref(true);
 
 // Set showOdds to false, this will hide winners by default
 const showOdds = ref(false);
 
-// Check if the date is valid, a Friday or Tuesday, and not in the future
+// Check if the date is valid and in the past
 const isValidDate = (dateStr: string) => {
   const date = new Date(dateStr);
   const today = new Date();
@@ -24,20 +25,30 @@ const isValidDate = (dateStr: string) => {
   if (isNaN(date.getTime())) {
     return false;
   } else {
-    return (
-      (date.getDay() === 5 || date.getDay() === 2) &&
-      date.getTime() <= today.getTime()
-    );
+    // REFACTOR: better not compare different timezones, set fixed locale instead
+    if (lottery.value === "eurojackpot" || lottery.value === "euromillions") {
+      // check if the day is a tuesday or a friday
+      return (
+        (date.getDay() === 5 || date.getDay() === 2) &&
+        date.getTime() <= today.getTime()
+      );
+    } else if (lottery.value === "powerball") {
+      // check if the day is a monday, wednesday or saturday (shift +1 day because of US eastern time)
+      return (
+        (date.getDay() === 2 || date.getDay() === 4 || date.getDay() === 0) &&
+        date.getTime() <= today.getTime()
+      );
+    }
   }
 };
 
 // check currentDate with regex for YYYY-MM-DD, redirect if invalid
 if (!currentDate.value.match(/^\d{4}-\d{2}-\d{2}$/)) {
-  router.push("/eurojackpot");
+  router.push("/" + lottery);
 }
 // check if date is valid, redirect if invalid
 else if (isValidDate(currentDate.value) === false) {
-  router.push("/eurojackpot");
+  router.push("/" + lottery);
 }
 
 // Function to calculate the next or previous draw date
@@ -62,9 +73,9 @@ const prevDate = ref(calculateDrawDate(new Date(currentDate.value), -1));
 const jackpot = ref(0);
 
 // Query template
-const getEurojackpotDrawQuery = (date: string) => gql`
+const getEurojackpotDrawQuery = (date: string, lottery: string) => gql`
   query GetLatestEurojackpotDraw {
-    draw(date: "${date}", limit: 1, type: "eurojackpot") {
+    draw(date: "${date}", limit: 1, type: "${lottery.value}") {
       backendError
       draws {
         additionalNumbers
@@ -83,7 +94,11 @@ const getEurojackpotDrawQuery = (date: string) => gql`
   }
 `;
 
-const fetchDraw = async (date: string | null, targetRef: any) => {
+const fetchDraw = async (
+  date: string | null,
+  lottery: string | null,
+  targetRef: any
+) => {
   // Set the timeout duration in milliseconds
   const TIMEOUT = 10000;
 
@@ -98,7 +113,7 @@ const fetchDraw = async (date: string | null, targetRef: any) => {
       setTimeout(() => reject(new Error("Timeout reached")), TIMEOUT)
     );
 
-    const queryPromise = useAsyncQuery(getEurojackpotDrawQuery(date), {
+    const queryPromise = useAsyncQuery(getEurojackpotDrawQuery(date, lottery), {
       limit: 1,
     });
 
@@ -131,9 +146,9 @@ const updateData = async () => {
   prevDate.value = calculateDrawDate(new Date(currentDate.value), -1);
 
   // set draw data
-  await fetchDraw(prevDate.value, prevDraw);
-  await fetchDraw(nextDate.value, nextDraw);
-  await fetchDraw(currentDate.value, currentDraw);
+  await fetchDraw(prevDate.value, lottery, prevDraw);
+  await fetchDraw(nextDate.value, lottery, nextDraw);
+  await fetchDraw(currentDate.value, lottery, currentDraw);
 
   if (currentDraw.value.data) {
     loading.value = false;
@@ -172,8 +187,10 @@ watch(
       <div v-if="currentDraw.data">
         <div class="lottery-result">
           <div class="lottery-logo">
-            <NuxtLink to="/eurojackpot/">
-              <SvgLogoEurojackpot />
+            <NuxtLink :to="'/' + lottery + '/'">
+              <SvgLogoEurojackpot v-if="lottery == 'eurojackpot'" />
+              <SvgLogoEuromillions v-if="lottery == 'euromillions'" />
+              <SvgLogoPowerball v-if="lottery == 'powerball'" />
             </NuxtLink>
           </div>
           <div>
@@ -193,7 +210,7 @@ watch(
 
             <div class="dates">
               <NuxtLink
-                :to="'/eurojackpot/' + prevDate"
+                :to="'/' + lottery + '/' + prevDate"
                 v-if="prevDate"
                 class="date-prev"
               >
@@ -214,7 +231,7 @@ watch(
                 }}
               </div>
               <NuxtLink
-                :to="'/eurojackpot/' + nextDate"
+                :to="'/' + lottery + '/' + nextDate"
                 v-if="nextDate"
                 class="date-next"
               >

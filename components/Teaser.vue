@@ -33,6 +33,10 @@
       margin: 0 auto;
       overflow: hidden;
       padding: 0;
+      min-height: 8em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       @media #{$media_sm_max} {
         max-width: 80%;
       }

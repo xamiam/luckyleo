@@ -25,6 +25,40 @@
           </div>
         </NuxtLink>
       </Teaser>
+      <Teaser class="lottery">
+        <NuxtLink to="/euromillions/">
+          <div class="padding">
+            <div class="lottery-logo">
+              <SvgLogoEuromillions />
+            </div>
+          </div>
+          <div class="dates">
+            <div class="date">
+              <i class="icon">
+                <SvgChevronRight />
+              </i>
+              alle Ergebnisse
+            </div>
+          </div>
+        </NuxtLink>
+      </Teaser>
+      <Teaser class="lottery">
+        <NuxtLink to="/powerball/">
+          <div class="padding">
+            <div class="lottery-logo">
+              <SvgLogoPowerball />
+            </div>
+          </div>
+          <div class="dates">
+            <div class="date">
+              <i class="icon">
+                <SvgChevronRight />
+              </i>
+              alle Ergebnisse
+            </div>
+          </div>
+        </NuxtLink>
+      </Teaser>
     </div>
     <Footer />
   </div>
