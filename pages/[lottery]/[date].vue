@@ -73,8 +73,8 @@ const prevDate = ref(calculateDrawDate(new Date(currentDate.value), -1));
 const jackpot = ref(0);
 
 // Query template
-const getEurojackpotDrawQuery = (date: string, lottery: string) => gql`
-  query GetLatestEurojackpotDraw {
+const getLotteryDrawQuery = (date: string, lottery: string) => gql`
+  query GetLotteryDraw {
     draw(date: "${date}", limit: 1, type: "${lottery.value}") {
       backendError
       draws {
@@ -113,7 +113,7 @@ const fetchDraw = async (
       setTimeout(() => reject(new Error("Timeout reached")), TIMEOUT)
     );
 
-    const queryPromise = useAsyncQuery(getEurojackpotDrawQuery(date, lottery), {
+    const queryPromise = useAsyncQuery(getLotteryDrawQuery(date, lottery), {
       limit: 1,
     });
 

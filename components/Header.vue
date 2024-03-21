@@ -11,6 +11,8 @@
       <nav>
         <NuxtLink to="/">Home</NuxtLink>
         <NuxtLink to="/eurojackpot">Eurojackpot</NuxtLink>
+        <NuxtLink to="/euromillions">Euromillions</NuxtLink>
+        <NuxtLink to="/powerball">Powerball</NuxtLink>
       </nav>
     </div>
   </header>
